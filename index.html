@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brandon Tan — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #e4e7ec;
+      --text: #111827;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 8px 32px rgba(15, 23, 42, 0.07);
+      --radius: 20px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ──────────────────────────────────────────── */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(248, 249, 251, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── LAYOUT ───────────────────────────────────────── */
+
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px 96px;
+    }
+
+    section { padding-top: 88px; }
+
+    .section-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.85rem, 2.8vw, 2.5rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 56px 40px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 18px;
+    }
+
+    .profile-photo {
+      width: 175px;
+      height: 175px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      border: 3px solid #fff;
+      outline: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-title {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 6px 18px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-bio {
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .social-links a {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-weight: 500;
+      background: var(--surface);
+      transition: border-color 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+    }
+
+    .social-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.13);
+      transform: translateY(-2px);
+    }
+
+    /* ── PROJECTS ─────────────────────────────────────── */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.11);
+    }
+
+    .project-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-card:nth-child(1) .project-thumb { background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+    .project-card:nth-child(2) .project-thumb { background: linear-gradient(135deg, #f0fdf4, #dcfce7); }
+    .project-card:nth-child(3) .project-thumb { background: linear-gradient(135deg, #fff7ed, #fed7aa); }
+    .project-card:nth-child(4) .project-thumb { background: linear-gradient(135deg, #fdf4ff, #f3e8ff); }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      background: var(--accent-soft);
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 4px 12px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── SKILLS ───────────────────────────────────────── */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px 24px;
+    }
+
+    .skill-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .skill-list li {
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .skill-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.45;
+    }
+
+    /* ── EXPERIENCE ───────────────────────────────────── */
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .timeline-entry {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 28px 26px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent), rgba(37, 99, 235, 0.1));
+      border-radius: 3px 0 0 3px;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .timeline-header h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .timeline-company {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 3px;
+    }
+
+    .timeline-date {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-top: 5px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .timeline-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+
+    footer {
+      max-width: 1080px;
+      margin: 48px auto 0;
+      padding: 28px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-copy {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 0.86rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ───────────────────────────────────── */
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+
+    @media (max-width: 860px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .skills-grid   { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-card   { padding: 40px 24px; }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-inner    { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .nav-links    { gap: 16px; }
+      .timeline-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="brand">Brandon Tan</a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="mailto:brandon_tanwj@hotmail.com">Contact</a></li>
+        <li><a href="Brandon_Tan_Resume.pdf" download>Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-wrap">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-card fade-in">
+        <div class="profile-photo">
+          <img src="images/Imageme.JPG" alt="Brandon Tan" onerror="this.remove()" />
+        </div>
+        <h1 class="hero-name">Brandon Tan</h1>
+        <span class="hero-title">Penultimate SMU SCIS Student</span>
+        <p class="hero-bio">
+          Final-year Computing & Information Systems student at Singapore Management University with a passion for building practical, user-centred applications. Experienced across full-stack development, cloud infrastructure, data analytics, and process automation.
+        </p>
+        <div class="social-links">
+          <a href="https://github.com/Brandodle" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/brandon-tan-551769197/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-heading fade-in">Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card fade-in">
+          <div class="project-thumb"><img src="images/TravelEase.png" alt="TravelEase" onerror="this.remove()" /></div>
+          <h3 class="project-title">TravelEase</h3>
+          <p class="project-desc">A full-stack travel management application built on OutSystems, featuring AI-powered itinerary generation, AI photo creation, and end-to-end booking workflows. Designed with modular atomic and composite services for user management, payments (Stripe integration with wallet system), and transaction handling, supported by optimized SQL queries for efficient data retrieval.</p>
+          <div class="tag-list">
+            <span class="tag">OutSystems</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Low-Code</span>
+            <span class="tag">Stripe</span>
+            <span class="tag">Azure AI</span>
+          </div>
+        </article>
+
+        <article class="project-card fade-in">
+          <div class="project-thumb"><img src="images/TeoHeng.png" alt="Teo Heng Digital Transformation" onerror="this.remove()" /></div>
+          <h3 class="project-title">Teo Heng Digital Transformation</h3>
+          <p class="project-desc">A digital transformation consultancy project about Teo Heng KTV, one of Singapore's largest karaoke chains. Designed a mobile app prototype to modernise their booking and loyalty experience, informed by customer journey mapping, sentiment analysis of user reviews, and supported by a phased rollout roadmap with measurable KPIs.</p>
+          <div class="tag-list">
+            <span class="tag">Figma</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">Journey Mapping</span>
+            <span class="tag">Strategy</span>
+          </div>
+        </article>
+
+        <article class="project-card fade-in">
+          <div class="project-thumb"><img src="images/Where2Eat.png" alt="Where2Eat" onerror="this.remove()" /></div>
+          <h3 class="project-title">Where2Eat</h3>
+          <p class="project-desc">An end-to-end NLP pipeline that transforms 150,000+ Singapore restaurant reviews into actionable insights for diners and owners. Built a multi-stage text processing system handling multilingual and Singlish content, with sentiment analysis (VADER, TF-IDF, RoBERTa, BERT), zero-shot aspect classification via BART, and LLM summarisation using a locally hosted Ollama model. Feeds into a web app where users can search restaurants by sentiment and aspect across food, service, price, and delivery.</p>
+          <div class="tag-list">
+            <span class="tag">Python</span>
+            <span class="tag">NLP</span>
+            <span class="tag">BERT</span>
+            <span class="tag">BART</span>
+            <span class="tag">Ollama</span>
+            <span class="tag">React</span>
+          </div>
+        </article>
+
+        <article class="project-card fade-in">
+          <div class="project-thumb"><img src="images/TaskIO.png" alt="TaskIO" onerror="this.remove()" /></div>
+          <h3 class="project-title">TaskIO</h3>
+          <p class="project-desc">A full-stack task management web application built with React and Python, backed by Supabase and containerised with Docker. Users can view assigned projects, track tasks, and manage workloads. Developed using a structured Scrum framework across multiple sprints, incorporating sprint planning, standups, reviews, and retrospectives, with rotating roles across Scrum Master, Product Owner, and Developer for hands-on Agile experience.</p>
+          <div class="tag-list">
+            <span class="tag">React</span>
+            <span class="tag">Python</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Agile</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <h2 class="section-heading fade-in">Skills</h2>
+      <div class="skills-grid">
+
+        <div class="skill-card fade-in">
+          <h3>Languages</h3>
+          <ul class="skill-list">
+            <li>Python</li>
+            <li>JavaScript</li>
+            <li>HTML</li>
+            <li>CSS</li>
+          </ul>
+        </div>
+
+        <div class="skill-card fade-in">
+          <h3>Frameworks</h3>
+          <ul class="skill-list">
+            <li>React</li>
+            <li>Vue.js</li>
+            <li>Next.js</li>
+            <li>Flask</li>
+          </ul>
+        </div>
+
+        <div class="skill-card fade-in">
+          <h3>Data &amp; Analytics</h3>
+          <ul class="skill-list">
+            <li>SQL</li>
+            <li>Tableau</li>
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>Matplotlib</li>
+          </ul>
+        </div>
+
+        <div class="skill-card fade-in">
+          <h3>Cloud &amp; DevOps</h3>
+          <ul class="skill-list">
+            <li>Docker</li>
+            <li>Kubernetes</li>
+            <li>Firebase</li>
+            <li>Supabase</li>
+            <li>Azure DevOps</li>
+          </ul>
+        </div>
+
+        <div class="skill-card fade-in">
+          <h3>Developer Tools</h3>
+          <ul class="skill-list">
+            <li>Git &amp; GitHub</li>
+            <li>Postman</li>
+            <li>VS Code / PyCharm</li>
+            <li>Figma</li>
+            <li>OutSystems</li>
+          </ul>
+        </div>
+
+        <div class="skill-card fade-in">
+          <h3>Other</h3>
+          <ul class="skill-list">
+            <li>SCRUM</li>
+            <li>Tokenization</li>
+            <li>POS Tagging</li>
+            <li>TF-IDF</li>
+            <li>LDA</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="section-heading fade-in">Experience</h2>
+      <div class="timeline">
+
+        <article class="timeline-entry fade-in">
+          <div class="timeline-header">
+            <div>
+              <h3>Process Automation Intern</h3>
+              <p class="timeline-company">FoodXervices Inc.</p>
+            </div>
+            <span class="timeline-date">Apr 2020 – Jul 2020</span>
+          </div>
+          <p class="timeline-desc">
+            Led a project team in developing a Robotic Process Automation (RPA) workflow using UIPath to improve order
+            processing efficiency. Collaborated across multiple departments to map and understand the company supply chain,
+            then delegated tasks and managed timelines to deliver the project on schedule.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="fade-in">
+    <p class="footer-copy">© 2026 Brandon Tan. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      }),
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      // stagger project cards and skill cards within their grid
+      const parent = el.parentElement;
+      if (parent && (parent.classList.contains('projects-grid') || parent.classList.contains('skills-grid'))) {
+        const siblings = Array.from(parent.children);
+        el.style.transitionDelay = `${siblings.indexOf(el) * 0.08}s`;
+      }
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
